@@ -67,7 +67,7 @@ streamlit run app.py
 ## 📁 Project Structure
 
 ```
-virtual-paint-pro/
+Visual-Drawing-Board/
 ├── app.py                    # Main Streamlit application
 ├── HandTrackingModule.py     # Hand tracking logic (the brain)
 ├── Bar/                      # Color selection header images
@@ -109,8 +109,10 @@ MIT License - Feel free to use this for your next art exhibition or to impress y
 
 <div align="center">
   Made with questionable life choices
+
   
   <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="200" alt="Bob Ross"/>
+  
   
   *"There are no mistakes, just happy accidents" - Bob Ross probably*
 </div>
