@@ -6,26 +6,35 @@
 
 import cv2
 import mediapipe as mp
+from mediapipe.python.solutions import hands as mp_hands
+from mediapipe.python.solutions import drawing_utils as mp_drawing
 import time
 import math
 import numpy as np
 
 class handDetector():
     def __init__(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
-        self.mode = mode
+        # Explicitly cast variables to avoid Mediapipe type errors
+        self.mode = bool(mode)
         self.maxHands = int(maxHands)
         self.detectionCon = float(detectionCon)
         self.trackCon = float(trackCon)
 
-        self.mpHands = mp.solutions.hands
-        # Explicitly naming arguments prevents type mismatch errors
+        import mediapipe.python.solutions.hands as mp_hands
+        import mediapipe.python.solutions.drawing_utils as mp_drawing
+        
+        self.mpHands = mp_hands
+        self.mpDraw = mp_drawing
+        
+        # Initialize the Hands object with explicit arguments
         self.hands = self.mpHands.Hands(
             static_image_mode=self.mode,
             max_num_hands=self.maxHands,
             min_detection_confidence=self.detectionCon,
             min_tracking_confidence=self.trackCon
         )
-        self.mpDraw = mp.solutions.drawing_utils
+        
+        # 4. Landmark ID references for fingertips
         self.tipIds = [4, 8, 12, 16, 20]
 
     def findHands(self, img, draw=True):
